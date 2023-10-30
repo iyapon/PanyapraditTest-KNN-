@@ -1,20 +1,21 @@
 package iyaaut.pr;
 
 import naphon.ai.ai.exceptions.AIException;
-import naphon.ai.regressions.PolynomialRegression;
+import naphon.ai.classify.KNearestNeighbors;
 
 import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        PolynomialRegression pr = new PolynomialRegression();
+        KNearestNeighbors kn = new KNearestNeighbors();
         try {
-            pr.train(Arrays.asList(2023.0, 2022.0, 2021.0, 2020.0, 2019.0, 2018.0, 2017.0, 2016.0, 2015.0, 2014.0, 2013.0, 2012.0, 2011.0, 2010.0, 2009.0, 2008.0, 2007.0, 2006.0, 2005.0, 2004.0, 2003.0, 2002.0, 2001.0, 2000.0, 1999.0, 1998.0, 1997.0, 1996.0, 1995.0, 1994.0, 1994.0, 1993.0, 1992.0, 1991.0, 1990.0, 1989.0, 1988.0, 1987.0, 1986.0, 1985.0, 1984.0, 1983.0, 1982.0, 1981.0, 1980.0, 1979.0, 1978.0, 1977.0, 1976.0, 1975.0, 1974.0),
-                    Arrays.asList(8.297, 8.159, 8.021, 7.884, 7.746, 7.608, 7.539, 7.469, 7.400, 7.330, 7.261, 7.240, 7.219, 7.199, 7.178, 7.157, 7.134, 7.112, 7.089, 7.067, 7.044, 6.963, 6.882, 6.800, 6.719, 6.638, 6.521, 6.405, 6.288, 6.172, 6.055, 5.970, 5.885, 5.801, 5.716, 5.631, 5.873, 6.115, 6.357, 6.599, 6.841, 7.030, 7.218, 7.407, 7.595, 7.784, 8.071, 8.357, 8.644, 8.930, 9.013), 2);
+            kn.train(Arrays.asList(new double[]{120.0, 1710.0}, new double[]{880.0, 615}, new double[]{90.0, 50.0}, new double[]{603.0, 1200.0}, new double[]{850.0, 132.0}, new double[]{50.0, 60.0}, new double[]{70.0, 5000.0}, new double[]{569.0, 524.0}, new double[]{50.0, 100.0}, new double[]{55.0, 80.0}),
+                    Arrays.asList("Train", "Airplane", "Bus", "Train", "Airplane", "Bus", "Train", "Airplane", "Bus", "Bus"));
+            System.out.println(kn.predict(new double[]{100.0, 40.0}, 300).get(0));
         } catch (AIException e) {
 
+            throw new RuntimeException(e);
         }
-        System.out.println(pr.predict(2024));
 
 
     }
